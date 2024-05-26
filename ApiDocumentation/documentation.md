@@ -4,7 +4,7 @@ O aplicativo irá consumir uma api desenvolvida no projeto "uenf educar" desenvo
 
 Autores da API: Matheus Shulz e Fernando Linhares
 
-## Usuários
+## Rota Usuários
 
 ### Criar um usuário
 - **URL:** `/user`
@@ -124,7 +124,7 @@ Autores da API: Matheus Shulz e Fernando Linhares
 }
 ~~~
 
-## Bibliotecas
+## Rota Bibliotecas
 
 ### Criar uma biblioteca
 - **URL:** `/library`
@@ -164,7 +164,7 @@ Autores da API: Matheus Shulz e Fernando Linhares
 }
 ~~~
 
-## Documentos
+## Rota Documentos
 
 ### Upload de um documento
 - **URL:** `/document/upload`
