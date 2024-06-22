@@ -1,8 +1,8 @@
 package com.danielferreira.uenf_educar_biblioteca.modules
 
 import com.danielferreira.uenf_educar_biblioteca.network.AuthInterceptor
-import com.danielferreira.uenf_educar_biblioteca.network.services.DocumentService
-import com.danielferreira.uenf_educar_biblioteca.network.services.LoginService
+import com.danielferreira.uenf_educar_biblioteca.network.api_services.DocumentService
+import com.danielferreira.uenf_educar_biblioteca.network.api_services.LoginService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,7 +17,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    private const val BASE_URL = "http://192.168.18.4:9001"
+    private const val BASE_URL = "http://educar.uenf.br/api/"
 
 
     @Provides

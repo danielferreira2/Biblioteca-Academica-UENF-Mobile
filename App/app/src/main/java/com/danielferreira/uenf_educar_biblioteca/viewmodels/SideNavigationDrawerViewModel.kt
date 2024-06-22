@@ -17,6 +17,8 @@ class SideNavigationDrawerViewModel @Inject constructor(
     private val _isDarkMode = MutableStateFlow(getInitialTheme())
     val isDarkMode: StateFlow<Boolean> = _isDarkMode
 
+    private val _topBarTitle = MutableStateFlow("areas de pesquisa")
+    val topBarTitle: StateFlow<String> = _topBarTitle
     private fun getInitialTheme(): Boolean {
         return sharedPreferences.getBoolean("dark_mode", false)
     }

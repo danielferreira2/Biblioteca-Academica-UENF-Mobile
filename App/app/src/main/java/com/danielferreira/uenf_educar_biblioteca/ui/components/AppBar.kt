@@ -14,11 +14,12 @@ import androidx.compose.runtime.Composable
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppBar(
+    title: String,
     onNavigationIconClick: () -> Unit
 ) {
     TopAppBar(
         title = {
-            Text(text = "Areas de pesquisa")
+            Text(text = "$title")
         },
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer,

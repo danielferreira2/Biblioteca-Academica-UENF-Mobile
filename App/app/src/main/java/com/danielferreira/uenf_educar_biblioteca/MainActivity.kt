@@ -1,65 +1,39 @@
 package com.danielferreira.uenf_educar_biblioteca
 
+import android.annotation.SuppressLint
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.DrawerValue
-import androidx.compose.material3.ModalDrawerSheet
-import androidx.compose.material3.ModalNavigationDrawer
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.rememberDrawerState
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.Modifier
-import com.danielferreira.uenf_educar_biblioteca.ui.components.AppBar
-import com.danielferreira.uenf_educar_biblioteca.ui.components.DrawerBody
-import com.danielferreira.uenf_educar_biblioteca.ui.components.DrawerHeader
+import androidx.annotation.RequiresApi
+import androidx.navigation.compose.rememberNavController
+import com.danielferreira.uenf_educar_biblioteca.ui.navigation.AppNavigation
 import com.danielferreira.uenf_educar_biblioteca.ui.theme.AppTheme
+import com.danielferreira.uenf_educar_biblioteca.viewmodels.DocumentViewModel
 import com.danielferreira.uenf_educar_biblioteca.viewmodels.LoginViewModel
 import com.danielferreira.uenf_educar_biblioteca.viewmodels.SideNavigationDrawerViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private val loginViewModel: LoginViewModel by viewModels()
     private val sideNavigationDrawerViewModel: SideNavigationDrawerViewModel by viewModels()
+    private val documentViewModel: DocumentViewModel by viewModels()
+    @RequiresApi(Build.VERSION_CODES.O)
+    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             AppTheme(sideNavigationDrawerViewModel = sideNavigationDrawerViewModel) {
-                val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
-                val scope = rememberCoroutineScope()
-                ModalNavigationDrawer(
-                    drawerState = drawerState,
-                    drawerContent = {
-                        ModalDrawerSheet {
-                            DrawerHeader(sideNavigationDrawerViewModel)
-                            DrawerBody(loginViewModel)
-                        }
-                    },
-                ) {
-                    Scaffold(
-                        topBar = {
-                            AppBar(onNavigationIconClick = {
-                                scope.launch {
-                                    drawerState.apply {
-                                        if (isClosed) open() else close()
-                                    }
-                                }
-                            })
-                        }
-                    ) {
+                val navController = rememberNavController()
 
-                        Column(
-                            modifier = Modifier.padding(it)
-                        ) {
-
-                        }
-                    }
-                }
+                AppNavigation(
+                    navController = navController,
+                    loginViewModel = loginViewModel,
+                    documentViewModel =documentViewModel,
+                    sideNavigationDrawerViewModel = sideNavigationDrawerViewModel
+                )
             }
         }
     }

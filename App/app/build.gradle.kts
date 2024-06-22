@@ -72,6 +72,9 @@ dependencies {
     //hilt
     kapt ("com.google.dagger:hilt-compiler:2.51.1")
     implementation ("com.google.dagger:hilt-android:2.51.1")
+    implementation("androidx.hilt:hilt-work:1.2.0")
+
+    implementation("androidx.work:work-runtime-ktx:2.9.0")
 
     //retrofit e okhttp
     implementation("com.squareup.retrofit2:retrofit:2.9.0")

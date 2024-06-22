@@ -3,9 +3,9 @@ package com.danielferreira.uenf_educar_biblioteca.viewmodels
 import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.danielferreira.uenf_educar_biblioteca.network.api_services.LoginService
 import com.danielferreira.uenf_educar_biblioteca.network.models.LoginRequest
 import com.danielferreira.uenf_educar_biblioteca.network.models.LoginResponse
-import com.danielferreira.uenf_educar_biblioteca.network.services.LoginService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

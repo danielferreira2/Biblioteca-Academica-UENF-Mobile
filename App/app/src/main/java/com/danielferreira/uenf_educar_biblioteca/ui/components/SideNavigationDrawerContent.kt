@@ -1,6 +1,5 @@
 package com.danielferreira.uenf_educar_biblioteca.ui.components
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -10,11 +9,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ExitToApp
 import androidx.compose.material.icons.filled.AccountBox
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Create
 import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.material.icons.filled.Info
@@ -28,15 +29,20 @@ import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.danielferreira.uenf_educar_biblioteca.viewmodels.LoginViewModel
 import com.danielferreira.uenf_educar_biblioteca.viewmodels.SideNavigationDrawerViewModel
 
+data class MenuItem(
+    val id: String,
+    val title: String,
+    val contentDescription: String,
+    val icon: ImageVector,
+    val route: String
+)
 
 @Composable
 fun DrawerHeader(viewModel: SideNavigationDrawerViewModel) {
@@ -48,15 +54,15 @@ fun DrawerHeader(viewModel: SideNavigationDrawerViewModel) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 20.dp, horizontal = 10.dp),
+                .padding(vertical = 10.dp, horizontal = 10.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Card(
                 shape = RoundedCornerShape(60.dp),
                 modifier = Modifier
-                    .width(100.dp)
-                    .height(100.dp),
+                    .width(70.dp)
+                    .height(70.dp),
                 colors = CardDefaults.cardColors(
                     containerColor = MaterialTheme.colorScheme.primaryContainer,
                     contentColor = MaterialTheme.colorScheme.primary
@@ -66,19 +72,27 @@ fun DrawerHeader(viewModel: SideNavigationDrawerViewModel) {
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text(
-                        text = "L",
-                        fontSize = 30.sp
+                    Icon(
+                        modifier = Modifier.size(40.dp),
+                        imageVector = Icons.Default.AccountCircle,
+                        contentDescription = null
                     )
                 }
             }
+
+            Text(
+                text = "Bem vindo, Usuário!",
+                fontSize = 20.sp
+            )
+
             IconButton(
                 onClick = {
                     viewModel.toggleTheme()
                 }
             ) {
                 Icon(
-                    imageVector = if (isDarkMode.value) Icons.Default.LightMode else Icons.Default.DarkMode,
+                    imageVector = if (isDarkMode.value) Icons.Default.LightMode else
+                        Icons.Default.DarkMode,
                     contentDescription = "dark mode/light mode button"
                 )
             }
@@ -88,28 +102,20 @@ fun DrawerHeader(viewModel: SideNavigationDrawerViewModel) {
 
 @Composable
 fun DrawerBody(
-    loginViewModel: LoginViewModel
+    onNavigate: (String) -> Unit,
+    onCreateDocument: () -> Unit
 ) {
     NavigationDrawerItem(
         label = { Text(text = "Meu perfil") },
         icon = {
             Icon(
                 imageVector = Icons.Default.AccountBox,
-                contentDescription =""
+                contentDescription = null
             )
         },
         selected = false,
         onClick = {
-            loginViewModel.login(
-                "daniel@mail.com",
-                "123",
-                onSuccess = {
-                    Log.d("login","sucesso: ${it.token}")
-                },
-                onError = {
-                    Log.d("login","erro: $it")
-                }
-            )
+            onNavigate("login")
         }
     )
     NavigationDrawerItem(
@@ -117,18 +123,18 @@ fun DrawerBody(
         icon = {
             Icon(
                 imageVector = Icons.Default.Create,
-                contentDescription =""
+                contentDescription = null
             )
         },
         selected = false,
-        onClick = { /*TODO*/ }
+        onClick = onCreateDocument
     )
     NavigationDrawerItem(
         label = { Text(text = "Sobre") },
         icon = {
             Icon(
                 imageVector = Icons.Default.Info,
-                contentDescription =""
+                contentDescription = null
             )
         },
         selected = false,
@@ -139,14 +145,10 @@ fun DrawerBody(
         icon = {
             Icon(
                 imageVector = Icons.AutoMirrored.Default.ExitToApp,
-                contentDescription =""
+                contentDescription = null
             )
         },
         selected = false,
         onClick = { /*TODO*/ }
     )
-
-
-
-
 }
