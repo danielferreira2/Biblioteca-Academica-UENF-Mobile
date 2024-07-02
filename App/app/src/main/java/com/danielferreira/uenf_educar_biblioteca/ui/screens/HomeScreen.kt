@@ -25,13 +25,15 @@ import com.danielferreira.uenf_educar_biblioteca.ui.components.DrawerBody
 import com.danielferreira.uenf_educar_biblioteca.ui.components.DrawerHeader
 import com.danielferreira.uenf_educar_biblioteca.ui.components.ResearchArea
 import com.danielferreira.uenf_educar_biblioteca.ui.components.ResearchAreaGrid
+import com.danielferreira.uenf_educar_biblioteca.viewmodels.DocumentViewModel
 import com.danielferreira.uenf_educar_biblioteca.viewmodels.SideNavigationDrawerViewModel
 import kotlinx.coroutines.launch
 
 @Composable
 fun HomeScreen(
     mainNavController: NavController,
-    sideNavigationDrawerViewModel: SideNavigationDrawerViewModel
+    sideNavigationDrawerViewModel: SideNavigationDrawerViewModel,
+    documentViewModel: DocumentViewModel
 ) {
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
@@ -58,9 +60,6 @@ fun HomeScreen(
                 DrawerBody(
                     onNavigate = {
                         mainNavController.navigate(it)
-                    },
-                    onCreateDocument = {
-                        showDialog = true
                     }
                 )
             }
@@ -87,13 +86,5 @@ fun HomeScreen(
         }
     }
 
-    if (showDialog) {
-        DocumentCreationDialog(
-            onDismiss = { showDialog = false },
-            onSave = { documentInfo ->
-                // a fazer...
-                showDialog = false
-            }
-        )
-    }
+
 }

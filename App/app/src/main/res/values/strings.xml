@@ -1,3 +1,109 @@
 <resources>
     <string name="app_name">educar</string>
+    <string name="library">663946e35d7526b4e1867e07</string>
+
+    <!-- src/middlewares -->
+    <!-- Função: admin -->
+    <string name="admin_400_token_invalid">400: Token inválido</string>
+    <string name="admin_404_token_invalid">404: Token inválido</string>
+    <string name="admin_404_token_expired">404: Token expirado</string>
+    <string name="admin_401_no_permission">401: Você não tem permissão pra fazer isso</string>
+    <string name="admin_401_no_authorization">401: Você não tem autorização para acessar essa rota</string>
+
+    <!-- Função: auth -->
+    <string name="auth_401_token_invalid">401: Token inválido</string>
+    <string name="auth_401_token_expired">401: Token expirado</string>
+    <string name="auth_401_no_authorization">401: Você não tem autorização para acessar essa rota</string>
+
+    <!-- src/models -->
+    <!-- Função: findByCredentials -->
+    <string name="find_by_credentials_400_user_not_found">400: Usuário não encontrado</string>
+    <string name="find_by_credentials_400_invalid_password">400: Senha inválida</string>
+
+    <!-- src/services/auth -->
+    <!-- Função: login -->
+    <string name="auth_login_401_email_not_provided">401: Email não informado</string>
+    <string name="auth_login_401_password_not_provided">401: Senha não informada</string>
+    <string name="auth_login_401_invalid_credentials">401: Credenciais inválidas</string>
+    <string name="auth_login_200_success">200: Retorna o usuário autenticado e um token JWT válido</string>
+
+    <!-- src/services/document -->
+    <!-- Método: upload -->
+    <string name="document_upload_200_success">200: Arquivo enviado com sucesso</string>
+    <string name="document_upload_500_error">500: Erro durante o upload</string>
+
+    <!-- Método: download -->
+    <string name="document_download_200_success">200: Download do arquivo realizado com sucesso</string>
+    <string name="document_download_500_error">500: Erro durante o download</string>
+
+    <!-- Método: create -->
+    <string name="document_create_200_success">200: Tipo de documento criado com sucesso</string>
+    <string name="document_create_409_conflict">409: Documento já cadastrado ou ID da biblioteca com formato inválido ou Biblioteca não encontrada</string>
+    <string name="document_create_500_validation_error">500: Erro de validação do esquema do documento ou erro interno</string>
+
+    <!-- Método: getAll -->
+    <string name="document_get_all_200_success">200: Lista de documentos recuperada com sucesso</string>
+    <string name="document_get_all_500_error">500: Erro durante a recuperação dos documentos</string>
+
+    <!-- Método: get -->
+    <string name="document_get_200_success">200: Documento específico recuperado com sucesso</string>
+    <string name="document_get_500_error">500: Erro durante a recuperação do documento</string>
+
+    <!-- Método: update -->
+    <string name="document_update_200_success">200: Documento atualizado com sucesso</string>
+    <string name="document_update_500_error">500: Erro durante a atualização do documento</string>
+
+    <!-- Método: delete -->
+    <string name="document_delete_200_success">200: Artigo deletado com sucesso</string>
+    <string name="document_delete_500_error">500: Erro durante a exclusão do documento</string>
+
+    <!-- Método: getLanguages -->
+    <string name="document_get_languages_200_success">200: Lista de idiomas recuperada com sucesso</string>
+    <string name="document_get_languages_500_error">500: Erro durante a recuperação dos idiomas</string>
+
+    <!-- Método: getTypes -->
+    <string name="document_get_types_200_success">200: Lista de tipos recuperada com sucesso</string>
+    <string name="document_get_types_500_error">500: Erro durante a recuperação dos tipos</string>
+
+    <!-- src/services/library -->
+    <!-- Método: create -->
+    <string name="library_create_200_success">200: Biblioteca criada com sucesso!</string>
+    <string name="library_create_400_conflict">400: Biblioteca já existe</string>
+    <string name="library_create_500_error">500: Erro durante a criação da biblioteca</string>
+
+    <!-- Método: getAll -->
+    <string name="library_get_all_200_success">200: Lista de bibliotecas recuperada com sucesso</string>
+    <string name="library_get_all_500_error">500: Erro durante a recuperação das bibliotecas</string>
+
+    <!-- src/services/user -->
+    <!-- Método: create -->
+    <string name="user_create_200_success">200: Sucesso ao criar o usuário</string>
+    <string name="user_create_400_invalid_email">400: Email inválido</string>
+    <string name="user_create_409_conflict">409: Usuário já cadastrado</string>
+    <string name="user_create_500_error">500: Erro durante a criação do usuário</string>
+
+    <!-- Método: getAll -->
+    <string name="user_get_all_200_success">200: Lista de usuários recuperada com sucesso</string>
+    <string name="user_get_all_500_error">500: Erro durante a recuperação dos usuários</string>
+
+    <!-- Método: getById -->
+    <string name="user_get_by_id_200_success">200: Usuário específico recuperado com sucesso</string>
+    <string name="user_get_by_id_404_not_found">404: Usuário não encontrado</string>
+    <string name="user_get_by_id_500_error">500: Erro durante a recuperação do usuário</string>
+
+    <!-- Método: update -->
+    <string name="user_update_200_success">200: Usuário atualizado com sucesso</string>
+    <string name="user_update_400_invalid_email">400: Email inválido</string>
+    <string name="user_update_404_not_found">404: Usuário não encontrado</string>
+    <string name="user_update_500_error">500: Erro durante a atualização do usuário</string>
+
+    <!-- Método: delete -->
+    <string name="user_delete_200_success">200: Usuário deletado com sucesso</string>
+    <string name="user_delete_404_not_found">404: Usuário não encontrado</string>
+    <string name="user_delete_500_error">500: Erro durante a exclusão do usuário</string>
+
+    <!-- Método: get -->
+    <string name="user_get_200_success">200: Usuario próprio recuperado com sucesso</string>
+    <string name="user_get_404_not_found">404: Usuário não encontrado</string>
+    <string name="user_get_500_error">500: Erro durante a recuperação do usuário</string>
 </resources>

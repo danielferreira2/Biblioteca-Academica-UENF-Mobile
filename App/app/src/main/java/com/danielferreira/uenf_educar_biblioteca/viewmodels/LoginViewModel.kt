@@ -14,8 +14,7 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(
     private val loginService: LoginService,
     private val sharedPreferences: SharedPreferences,
-): ViewModel()
-{
+) : ViewModel() {
     fun login(
         email: String,
         password: String,
@@ -27,9 +26,11 @@ class LoginViewModel @Inject constructor(
                 val response = loginService.login(LoginRequest(email, password))
                 if (response.isSuccessful) {
                     response.body()?.let { loginResponse ->
-                        // Salvar token no SharedPreferences
+                        // Salvar token e nome do usuário no SharedPreferences
                         sharedPreferences.edit()
-                            .putString("jwt_token", loginResponse.token).apply()
+                            .putString("jwt_token", loginResponse.token)
+                            .putString("user_name", loginResponse.user.name) // Adiciona o nome do usuário
+                            .apply()
                         onSuccess(loginResponse)
                     } ?: run {
                         onError("Erro ao obter resposta do servidor.")
@@ -41,7 +42,5 @@ class LoginViewModel @Inject constructor(
                 onError(e.message ?: "Erro desconhecido")
             }
         }
-
     }
-
 }

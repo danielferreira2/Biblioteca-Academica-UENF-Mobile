@@ -100,8 +100,8 @@ fun LoginScreen(navController: NavController, loginViewModel: LoginViewModel) {
                         email = email,
                         password = password,
                         onSuccess = { loginResponse ->
-                            Toast.makeText(context, "Login successful", Toast.LENGTH_LONG).show()
-                            Toast.makeText(context, loginResponse.token, Toast.LENGTH_LONG).show()
+                            Toast.makeText(context, "Login realizado com sucesso", Toast.LENGTH_LONG).show()
+                            //Toast.makeText(context, loginResponse.token, Toast.LENGTH_LONG).show()
                             navController.navigate("home")
                         },
                         onError = { errorMessage ->

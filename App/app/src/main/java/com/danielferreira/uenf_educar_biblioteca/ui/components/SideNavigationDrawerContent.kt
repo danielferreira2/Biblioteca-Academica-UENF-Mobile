@@ -31,22 +31,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.danielferreira.uenf_educar_biblioteca.viewmodels.SideNavigationDrawerViewModel
 
-data class MenuItem(
-    val id: String,
-    val title: String,
-    val contentDescription: String,
-    val icon: ImageVector,
-    val route: String
-)
-
 @Composable
 fun DrawerHeader(viewModel: SideNavigationDrawerViewModel) {
+
     val isDarkMode = viewModel.isDarkMode.collectAsState()
+    val userName = viewModel.userName.collectAsState()
 
     Column(
         modifier = Modifier.background(MaterialTheme.colorScheme.surfaceVariant)
@@ -58,30 +51,9 @@ fun DrawerHeader(viewModel: SideNavigationDrawerViewModel) {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Card(
-                shape = RoundedCornerShape(60.dp),
-                modifier = Modifier
-                    .width(70.dp)
-                    .height(70.dp),
-                colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    contentColor = MaterialTheme.colorScheme.primary
-                )
-            ) {
-                Box(
-                    modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Icon(
-                        modifier = Modifier.size(40.dp),
-                        imageVector = Icons.Default.AccountCircle,
-                        contentDescription = null
-                    )
-                }
-            }
 
             Text(
-                text = "Bem vindo, Usuário!",
+                text = "Bem vindo, ${userName.value ?: "visitante"}",
                 fontSize = 20.sp
             )
 
@@ -100,10 +72,10 @@ fun DrawerHeader(viewModel: SideNavigationDrawerViewModel) {
     }
 }
 
+
 @Composable
 fun DrawerBody(
     onNavigate: (String) -> Unit,
-    onCreateDocument: () -> Unit
 ) {
     NavigationDrawerItem(
         label = { Text(text = "Meu perfil") },
@@ -127,7 +99,9 @@ fun DrawerBody(
             )
         },
         selected = false,
-        onClick = onCreateDocument
+        onClick = {
+            onNavigate("create_document")
+        }
     )
     NavigationDrawerItem(
         label = { Text(text = "Sobre") },

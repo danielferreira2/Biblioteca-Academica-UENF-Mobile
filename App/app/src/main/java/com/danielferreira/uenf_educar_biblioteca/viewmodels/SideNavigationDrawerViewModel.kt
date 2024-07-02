@@ -14,11 +14,25 @@ class SideNavigationDrawerViewModel @Inject constructor(
     private val sharedPreferences: SharedPreferences
 ) : ViewModel() {
 
+
+    private val _userName = MutableStateFlow<String?>(null)
+    val userName: StateFlow<String?> get() = _userName
+
     private val _isDarkMode = MutableStateFlow(getInitialTheme())
     val isDarkMode: StateFlow<Boolean> = _isDarkMode
 
     private val _topBarTitle = MutableStateFlow("areas de pesquisa")
     val topBarTitle: StateFlow<String> = _topBarTitle
+
+
+    init{
+        loadUserName()
+    }
+
+    private fun loadUserName() {
+        _userName.value = sharedPreferences.getString("user_name", null)
+    }
+
     private fun getInitialTheme(): Boolean {
         return sharedPreferences.getBoolean("dark_mode", false)
     }

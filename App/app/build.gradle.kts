@@ -89,4 +89,20 @@ dependencies {
     //navigation compose
     implementation("androidx.navigation:navigation-compose:2.7.7")
 
+
+    // JUnit for unit testing
+    testImplementation("junit:junit:4.13.2")
+
+    // Coroutines for testing
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0")
+    // AndroidX Test - Core, Runner, and Rules
+    testImplementation("androidx.test:core:1.4.0")
+    testImplementation("androidx.test:runner:1.4.0")
+    testImplementation("androidx.test:rules:1.4.0")
+    // AndroidX Arch Core Testing - for ViewModel testing
+    testImplementation("androidx.arch.core:core-testing:2.1.0")
+    // MockK for mocking
+    testImplementation("io.mockk:mockk:1.12.0")
+
+
 }
